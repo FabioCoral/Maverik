@@ -4,11 +4,24 @@ using UnityEngine;
 
 public class TorretaLooking : MonoBehaviour
 {
+    [SerializeField] private Transform airPlane;
+    [SerializeField] private float airPlaneHeight = 50.0f;
+    [SerializeField] private GameObject projectile;
     public Transform torreta, player;
 
     // Update is called once per frame
     void Update()
     {
-        torreta.transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
+        if (airPlane != null){
+            torreta.transform.LookAt(player.position);
+        }
+        if(airPlane.position.y >= airPlaneHeight){
+            ShootingAirPlane();
+            Instantiate(projectile);
+        }
+        
+        void ShootingAirPlane(){
+            Debug.Log("Disparando no Avião");
+        }
     }
 }
